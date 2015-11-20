@@ -116,6 +116,10 @@ class S3Storage(Storage):
         """
         Save file.
         """
+        # XXX a temporary workaround to avoid creating extra '.' folder when
+        # uploading the file. Removing still doesn't work.
+        name = content.name
+
         key = self.bucket.new_key(name)
         content.seek(0)
 
